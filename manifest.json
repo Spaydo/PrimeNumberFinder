@@ -8,8 +8,8 @@
 		"libs/modules/promise/promise.js"
 	],
 	"game": [
+		"bin-debug/FixedParameter.js",
 		"bin-debug/MainPanel.js",
-		"bin-debug/NewFile.js",
 		"bin-debug/system/AssetAdapter.js",
 		"bin-debug/system/LoadingUI.js",
 		"bin-debug/system/Main.js",
