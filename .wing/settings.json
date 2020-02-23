@@ -3,4 +3,15 @@
 		"**/bin-debug": true,
 		"**/bin-release": true
 	}
+,
+"editor.wrappingColumn": 0,
+"editor.formatOnType": true,
+"editor.mouseWheelZoom": true,
+"editor.stablePeek": true,
+"git.enabled": false,
+"workbench.editor.enablePreview": true,
+"typescript.format.placeOpenBraceOnNewLineForFunctions": true,
+"typescript.format.placeOpenBraceOnNewLineForControlBlocks": true,
+"javascript.format.placeOpenBraceOnNewLineForFunctions": true,
+"javascript.format.placeOpenBraceOnNewLineForControlBlocks": true
 }
