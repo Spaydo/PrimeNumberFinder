@@ -1,17 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <e:Skin class="MainSkin" width="1024" height="768" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
 	<e:Rect fillColor="0x020063" left="0" bottom="0" right="0" top="0" locked="true"/>
-	<e:Group id="MainGroup" left="0" right="0" top="0" bottom="0">
-		<e:Label text="質數查找器" multiline="true" width="520" size="100" textAlign="center" verticalAlign="middle" scaleX="1" scaleY="1" horizontalCenter="0" top="84"/>
-	</e:Group>
-	<e:Group id="MinMaxGroup" left="0" right="0" top="0" bottom="0">
-		<e:EditableText id="InputMax" width="1000" text="" background="true" backgroundColor="0xFFFFFF" bold="true" textColor="0x000000" textAlign="center" verticalCenter="-69" horizontalCenter="0" prompt="請輸入結束查找數 ( &gt;= 2 )"/>
-		<e:EditableText id="InputMin" width="1000" text="" background="true" backgroundColor="0xFFFFFF" bold="true" textColor="0x000000" textAlign="center" verticalCenter="-108" horizontalCenter="0" prompt="請輸入開始查找數 ( &gt;= 2 )"/>
-		<e:CheckBox id="EnableSetMin" label="是否啟用自設定最小參數功能(預設2)" enabled="true" skinName="skins.CheckBoxSkin" verticalCenter="-34.5" left="12"/>
-		<e:Label id="SumNum" text="搜尋到的總數 : 0" width="312" bold="true" verticalCenter="-34" horizontalCenter="344"/>
-		<e:Label id="Result" text="" background="true" backgroundColor="0x666666" bold="true" multiline="true" height="388" width="1000" verticalCenter="180" horizontalCenter="0"/>
-		<e:Button id="StartSearch" label="開始搜尋" skinName="skins.ButtonSkin" width="110" height="36" verticalCenter="-32" horizontalCenter="-67"/>
-	</e:Group>
-	<e:Group id="InspectorGroup" left="0" right="0" top="0" bottom="0" visible="false">
-	</e:Group>
+	<e:Label text="質數查找器" multiline="true" width="520" size="100" textAlign="center" verticalAlign="middle" scaleX="1" scaleY="1" horizontalCenter="0" top="84"/>
+	<e:Label id="Result" text="" background="true" backgroundColor="0x666666" bold="true" multiline="true" height="388" width="1000" verticalCenter="180" horizontalCenter="0" name="Result"/>
+	<e:EditableText id="InputMax" width="1000" text="" background="true" backgroundColor="0xFFFFFF" bold="true" textColor="0x000000" textAlign="center" verticalCenter="-69" horizontalCenter="0" prompt="請輸入結束查找數 (>= 2 )" name="InputMax"/>
+	<e:Button id="StartSearch" label="開始搜尋" skinName="skins.ButtonSkin" width="110" height="36" verticalCenter="-32" horizontalCenter="0" name="StartSearch"/>
 </e:Skin>

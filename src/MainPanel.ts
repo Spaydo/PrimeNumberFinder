@@ -7,37 +7,23 @@
 */
 class MainPanel extends eui.Component
 {
-    public MainGroup: eui.Group;
-    public MinMaxGroup: eui.Group;
-    public InputMax: eui.EditableText;
-    public InputMin: eui.EditableText;
-    public EnableSetMin: eui.CheckBox;
-    public SumNum: eui.Label;
+    // 結果顯示器
     public Result: eui.Label;
+    // 輸入端
+    public InputMax: eui.EditableText;
+    // 開始按鈕
     public StartSearch: eui.Button;
-    public InspectorGroup: eui.Group;
 
-
-    /** 最大被查找值 */
-    private MaxNum: number = 0;
-    /** 最小被查找值 */
-    private MinNum: number = FixedParameter.MinPrimeNumber;
-    /** 範圍內質數總數 */
-    private SumPrimeNum: number = 0;
-    /** 以確認質數清單 */
-    private ConfirmedPrime: Array<number> = [];
-
-
+    /** 目標數字 */
+    private TargetNum: number = 0;
 
     constructor()
     {
         super();
         this.skinName = MainSkin;
 
-        this.InputMin.touchEnabled = this.EnableSetMin.selected;
+        this.StartSearch.addEventListener(egret.TouchEvent.TOUCH_TAP, this.Search, this);
 
-
-        this.StartSearch.addEventListener(egret.TouchEvent.TOUCH_TAP, this.Search, this.StartSearch);
         this.InputMax.addEventListener(egret.Event.FOCUS_IN, this.ClearMaxFocusIn, this);
         this.InputMax.addEventListener(egret.Event.CHANGE, this.MaxTxtChange, this);
         this.InputMax.addEventListener(egret.Event.FOCUS_OUT, this.ShowMaxTxtFocusOut, this);
@@ -46,32 +32,58 @@ class MainPanel extends eui.Component
     /** 最大值改變 */
     private MaxTxtChange()
     {
-        this.MaxNum = parseInt(this.InputMax.text);
+        let target: number = parseInt(this.InputMax.text);
+        this.TargetNum = target >= 2 ? target : 0;
     }
 
     /** Max 獲得焦點 清除內容 */
-    private ClearMaxFocusIn(/*a:Event,b:eui.EditableText*/)
+    private ClearMaxFocusIn()
     {
-        // console.log(a);
-        // console.log(b);
         this.InputMax.text = "";
     }
 
     /** Max 失去焦點 */
     private ShowMaxTxtFocusOut()
     {
-        this.InputMax.text = this.MaxNum > 0 ? String(this.MaxNum) : "";
+        this.InputMax.text = this.TargetNum > 0 ? String(this.TargetNum) : "";
     }
 
     /** 開始搜尋 */
     private Search()
     {
         console.log("開始搜尋");
-        let aa = this.InputMax.text = "11111";
-        let maxInput: number = parseInt(aa);
-        console.log(maxInput);
-        // if(maxInput>)
 
+        let target: number = this.TargetNum;
+        // 不在正常查找範圍內的數 要提示使用者
+        if (target < FixedParameter.MinPrimeNumber)
+        {
+            this.Result.text = FixedParameter.TipOfNoTargetNumber;
+            return;
+        }
 
+        // 開始查找
+
+        let isPrimeNum: boolean = true;
+        // 最大驗證數只到目標數的開根號
+        let maxValue: number = Math.sqrt(target);
+
+        for (let curNum: number = 2; curNum <= maxValue; curNum++)
+        {
+            // 可被數整除 當前數為因數 當前判斷的目標數字不為質數
+            if (target % curNum == 0)
+            {
+                isPrimeNum = false;
+                break;
+            }
+        }
+
+        if (isPrimeNum)
+        {
+            this.Result.text = FixedParameter.TargetIsPrimeNum.replace("{0}", String(target));
+        }
+        else
+        {
+            this.Result.text = FixedParameter.TargetNotPrimeNum.replace("{0}", String(target));
+        }
     }
 }
